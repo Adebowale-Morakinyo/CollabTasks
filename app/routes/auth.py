@@ -22,7 +22,7 @@ class UserRegister(MethodView):
     @bp.response(201, description="User created successfully.")
     def post(self, user_data):
         if User.find_by_username(user_data["username"]):
-            abort(400, message="A user with that username already exists.")
+            abort(409, message="A user with that username already exists.")
         try:
             user = User(**user_data)
             user.set_password(user_data["password"])  # Hash the password
