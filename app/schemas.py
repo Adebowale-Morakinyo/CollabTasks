@@ -16,3 +16,12 @@ class UserLoginResponseSchema(Schema):
 
 class TokenRefreshResponseSchema(Schema):
     access_token = fields.Str()
+
+
+class TaskSchema(Schema):
+    id = fields.Int()
+    title = fields.Str(required=True)
+    description = fields.Str()
+    priority = fields.Int()
+    user_id = fields.Int(dump_only=True)
+    created_at = fields.DateTime(dump_only=True)
