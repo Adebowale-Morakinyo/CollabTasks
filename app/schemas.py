@@ -25,3 +25,4 @@ class TaskSchema(Schema):
     priority = fields.Int()
     user_id = fields.Int(dump_only=True)
     created_at = fields.DateTime(dump_only=True)
+    updated_at = fields.DateTime(dump_only=True)

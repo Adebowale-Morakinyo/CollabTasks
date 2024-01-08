@@ -65,13 +65,12 @@ class UserLogout(MethodView):
 
 
 @bp.route("/user/<int:user_id>")
+@bp.doc(description="""
+This resource can be useful when testing our Flask app.
+We may not want to expose it to public users, but for the
+sake of testing.
+""")
 class User(MethodView):
-    """
-    This resource can be useful when testing our Flask app.
-    We may not want to expose it to public users, but for the
-    sake of testing.
-    """
-
     @bp.response(200, UserSchema)
     def get(self, user_id):
         user = User.find_by_id(user_id)
