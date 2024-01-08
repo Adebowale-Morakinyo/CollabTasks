@@ -42,6 +42,7 @@ class Task(db.Model):
     priority = db.Column(db.Integer, default=0)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     user = db.relationship('User', backref=db.backref('tasks', lazy=True))
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
 
 
 class Collaboration(db.Model):
