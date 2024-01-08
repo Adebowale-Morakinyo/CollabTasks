@@ -7,6 +7,7 @@ from flask_jwt_extended import (
     get_jwt,
     jwt_required,
 )
+import logging
 
 from app.models import User
 from app.schemas import UserSchema, UserLoginResponseSchema, TokenRefreshResponseSchema
@@ -28,6 +29,7 @@ class UserRegister(MethodView):
             user.set_password(user_data["password"])  # Hash the password
             user.save_to_db()
         except Exception as e:
+            logging.error(str(e))
             abort(500, message="An error occurred while processing your request")
 
         return {"message": "User created successfully. You can now log in."}, 201
@@ -46,6 +48,7 @@ class UserLogin(MethodView):
                 refresh_token = create_refresh_token(user.id)
                 return {"access_token": access_token, "refresh_token": refresh_token}, 200
         except Exception as e:
+            logging.error(str(e))
             abort(500, message="An error occurred while processing your request")
 
         abort(401, message="Invalid credentials.")

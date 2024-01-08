@@ -2,6 +2,7 @@ from flask import Flask, jsonify
 from flask_smorest import Api
 from flask_jwt_extended import JWTManager
 from flask_migrate import Migrate
+import logging
 
 from blocklist import BLOCKLIST
 from .models import db
@@ -10,6 +11,9 @@ from .models import db
 def create_app(config_name="development"):
     app = Flask(__name__)
     app.config.from_object(f"config.{config_name.capitalize()}Config")
+
+    # Configure logging
+    logging.basicConfig(filename='error.log', level=logging.ERROR)
 
     db.init_app(app)
     migrate = Migrate(app, db)
