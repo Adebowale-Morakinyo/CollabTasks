@@ -68,3 +68,7 @@ class Collaboration(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     task_id = db.Column(db.Integer, db.ForeignKey('task.id'), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+
+    def save_to_db(self):
+        db.session.add(self)
+        db.session.commit()

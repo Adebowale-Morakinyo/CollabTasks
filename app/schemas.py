@@ -26,3 +26,9 @@ class TaskSchema(Schema):
     user_id = fields.Int(dump_only=True)
     created_at = fields.DateTime(dump_only=True)
     updated_at = fields.DateTime(dump_only=True)
+
+
+class CollaborationSchema(Schema):
+    id = fields.Int()
+    task_id = fields.Int(required=True)
+    user_id = fields.Int(required=True)
