@@ -7,6 +7,8 @@ import logging
 from blocklist import BLOCKLIST
 from .models import db
 
+migrate = Migrate()
+
 
 def create_app(config_name="development"):
     app = Flask(__name__)
@@ -16,7 +18,7 @@ def create_app(config_name="development"):
     logging.basicConfig(filename='error.log', level=logging.ERROR)
 
     db.init_app(app)
-    migrate = Migrate(app, db)
+    migrate.init_app(app, db)
 
     api = Api(app)
     jwt = JWTManager(app)
@@ -82,7 +84,7 @@ def create_app(config_name="development"):
         )
 
     from .routes import auth, tasks
-    app.register_blueprint(auth.bp)
-    app.register_blueprint(tasks.bp)
+    api.register_blueprint(auth.bp)
+    api.register_blueprint(tasks.bp)
 
     return app
