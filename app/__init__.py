@@ -3,6 +3,7 @@ from flask_smorest import Api
 from flask_jwt_extended import JWTManager
 from flask_migrate import Migrate
 from flask_socketio import SocketIO
+from flask_cors import CORS
 import logging
 
 from blocklist import BLOCKLIST
@@ -10,6 +11,7 @@ from .models import db
 
 migrate = Migrate()
 socketio = SocketIO()
+cors = CORS()
 
 
 def create_app(config_name="development"):
@@ -21,7 +23,7 @@ def create_app(config_name="development"):
 
     db.init_app(app)
     migrate.init_app(app, db)
-    socketio.init_app(app)
+    socketio.init_app(app, cors_allowed_origins="http://127.0.0.1:5000")
 
     api = Api(app)
     jwt = JWTManager(app)
