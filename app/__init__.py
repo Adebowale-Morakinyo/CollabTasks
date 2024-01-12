@@ -2,15 +2,14 @@ from flask import Flask, jsonify
 from flask_smorest import Api
 from flask_jwt_extended import JWTManager
 from flask_migrate import Migrate
-from flask_socketio import SocketIO
 from flask_cors import CORS
 import logging
 
 from blocklist import BLOCKLIST
 from .models import db
+from .socketio.events import socketio
 
 migrate = Migrate()
-socketio = SocketIO()
 cors = CORS()
 
 
