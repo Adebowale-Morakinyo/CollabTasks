@@ -4,6 +4,7 @@ from flask_jwt_extended import jwt_required, get_jwt_identity
 
 from app.models import Task
 from app.schemas import TaskSchema
+from app.algorithms import prioritize_tasks
 
 bp = Blueprint("tasks", __name__, url_prefix="/tasks", description="Operations for tasks")
 
@@ -15,7 +16,11 @@ class TaskList(MethodView):
     def get(self):
         current_user = get_jwt_identity()
         tasks = Task.query.filter_by(user_id=current_user).all()
-        return tasks
+
+        # Prioritize tasks using the custom algorithm
+        prioritized_tasks = prioritize_tasks(tasks)
+
+        return prioritized_tasks
 
     @bp.arguments(TaskSchema)
     @bp.response(201, TaskSchema)
