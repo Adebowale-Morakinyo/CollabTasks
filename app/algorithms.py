@@ -23,9 +23,9 @@ def prioritize_tasks(tasks, user_id):
 # Function to calculate priority score for a task
 def calculate_priority_score(task, user_preferences):
     # Get user-specific weights or use defaults if not set
-    due_date_weight = user_preferences.get("due_date", 0.3)
-    urgency_weight = user_preferences.get("urgency", 0.2)
-    importance_weight = user_preferences.get("importance", 0.5)
+    due_date_weight = user_preferences.get("due_date", 0.2)
+    urgency_weight = user_preferences.get("urgency", 0.3)
+    importance_weight = user_preferences.get("importance", 0.4)
     complexity_weight = user_preferences.get("complexity", 0.1)
 
     # Calculate priority score using a weighted sum
