@@ -26,8 +26,6 @@ class UserPreferencesView(MethodView):
             user_preferences.update(user_preferences_data)
         else:
             user_preferences = UserPreferences(user_id=user_id, **user_preferences_data)
-            db.session.add(user_preferences)
-
-        db.session.commit()
+            user_preferences.save_to_db()
 
         return {"message": "User preferences updated successfully"}, 200
