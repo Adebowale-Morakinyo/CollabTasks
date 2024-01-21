@@ -32,3 +32,10 @@ class CollaborationSchema(Schema):
     id = fields.Int()
     task_id = fields.Int(required=True)
     user_id = fields.Int(required=True)
+
+
+class UserPreferencesSchema(Schema):
+    due_date = fields.Int()
+    urgency = fields.Int()
+    importance = fields.Int()
+    complexity = fields.Int()
