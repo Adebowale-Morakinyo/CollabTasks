@@ -18,9 +18,9 @@ class TaskList(MethodView):
         tasks = Task.query.filter_by(user_id=current_user).all()
 
         # Prioritize tasks using the custom algorithm
-        prioritized_tasks = prioritize_tasks(tasks)
+        prioritized_tasks = prioritize_tasks(tasks, user_id=current_user)
 
-        return prioritized_tasks
+        return [task.to_dict() for task in prioritized_tasks], 200
 
     @bp.arguments(TaskSchema)
     @bp.response(201, TaskSchema)
