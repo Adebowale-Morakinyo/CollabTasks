@@ -1,3 +1,6 @@
+from app.models import UserPreferences
+
+
 # Fetch user preferences from the database
 def fetch_user_preferences(user_id):
     # Logic to fetch user preferences from the database
