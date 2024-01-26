@@ -87,8 +87,10 @@ def create_app(config_name="development"):
             401,
         )
 
-    from .routes import auth, tasks
+    from .routes import auth, tasks, collaborations, preferences
     api.register_blueprint(auth.bp)
     api.register_blueprint(tasks.bp)
+    api.register_blueprint(collaborations.bp)
+    api.register_blueprint(preferences.bp)
 
     return app
