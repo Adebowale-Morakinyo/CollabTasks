@@ -89,7 +89,7 @@ class User(MethodView):
 @bp.route("/refresh")
 class TokenRefresh(MethodView):
     @jwt_required(refresh=True)
-    @bp.response(TokenRefreshResponseSchema, 200)
+    @bp.response(200, TokenRefreshResponseSchema)
     def post(self):
         current_user = get_jwt_identity()
         new_token = create_access_token(identity=current_user, fresh=False)
