@@ -93,4 +93,7 @@ def create_app(config_name="development"):
     api.register_blueprint(collaborations.bp)
     api.register_blueprint(preferences.bp)
 
+    with app.app_context():
+        db.create_all()
+
     return app

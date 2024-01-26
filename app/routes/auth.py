@@ -14,7 +14,7 @@ from app.schemas import UserSchema, UserLoginResponseSchema, TokenRefreshRespons
 from blocklist import BLOCKLIST
 
 
-bp = Blueprint("auth", __name__, description="Operations for user authentication")
+bp = Blueprint("auth", __name__, url_prefix="/auth", description="Operations for user authentication")
 
 
 @bp.route("/register")
