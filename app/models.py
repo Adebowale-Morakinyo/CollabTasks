@@ -1,8 +1,7 @@
-from flask_sqlalchemy import SQLAlchemy
 from passlib.hash import pbkdf2_sha256
 from datetime import datetime
 
-db = SQLAlchemy()
+from db import db
 
 
 class User(db.Model):

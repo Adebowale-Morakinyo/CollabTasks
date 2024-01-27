@@ -6,7 +6,7 @@ from flask_cors import CORS
 import logging
 
 from blocklist import BLOCKLIST
-from .models import db
+from db import db
 from .socketio.events import socketio
 
 migrate = Migrate()
@@ -21,8 +21,8 @@ def create_app(config_name="development"):
     logging.basicConfig(filename='error.log', level=logging.ERROR)
 
     db.init_app(app)
-    migrate.init_app(app, db)
-    socketio.init_app(app, cors_allowed_origins="http://127.0.0.1:5000")
+    # migrate.init_app(app, db)
+    # socketio.init_app(app, cors_allowed_origins="http://127.0.0.1:5000")
 
     api = Api(app)
     jwt = JWTManager(app)
