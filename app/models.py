@@ -5,6 +5,8 @@ from db import db
 
 
 class User(db.Model):
+    __tablename__ = "users"
+
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(50), unique=True, nullable=False)
     password = db.Column(db.String(128), nullable=False)
@@ -35,6 +37,8 @@ class User(db.Model):
 
 
 class Task(db.Model):
+    __tablename__ = "tasks"
+
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100), nullable=False)
     description = db.Column(db.Text)
@@ -64,6 +68,8 @@ class Task(db.Model):
 
 
 class Collaboration(db.Model):
+    __tablename__ = "collaboration"
+
     id = db.Column(db.Integer, primary_key=True)
     task_id = db.Column(db.Integer, db.ForeignKey('task.id'), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
@@ -74,6 +80,8 @@ class Collaboration(db.Model):
 
 
 class UserPreferences(db.Model):
+    __tablename__ = "user_preferences"
+
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.String(50), unique=True, nullable=False)
     due_date = db.Column(db.Float, default=0.2)
