@@ -9,7 +9,8 @@ from flask_jwt_extended import (
 )
 import logging
 
-from app.models import User
+# from app.models import User
+from app import User
 from app.schemas import UserSchema, UserLoginResponseSchema, TokenRefreshResponseSchema
 from blocklist import BLOCKLIST
 
