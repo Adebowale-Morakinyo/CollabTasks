@@ -9,8 +9,6 @@ from blocklist import BLOCKLIST
 from db import db
 from .socketio.events import socketio
 
-from .models import User
-
 migrate = Migrate()
 cors = CORS()
 
